@@ -14,6 +14,11 @@
 @class EndLessScrollView;
 @protocol EndLessScrollViewDelegate<NSObject>
 
+/**
+ 图片点击的代理方法
+
+ @param index 被点击的index
+ */
 -(void)picDidClickAtIndex:(NSInteger)index;
 
 @end
@@ -26,6 +31,8 @@
  @param imgNameArray 图片的名字，url字符串（图片带http判断为网络图片）
  */
 -(instancetype)initWithImgNameArray:(NSArray *)imgNameArray;
+
+
 @property(nonatomic,weak)id<EndLessScrollViewDelegate>endLessScrollViewDelegate;
 
 /**
