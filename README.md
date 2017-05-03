@@ -9,9 +9,9 @@ endlessScroll这个文件夹直接拖入你的项目就行了。
 demo中用到了pod
 如果直接运行不了，自行pod install一下即可
 
-#pod
+## pod
 cd 到demo目录
 pod install
 
-#图片
-![] http://a1.qpic.cn/psb?/V14AvX772n81LZ/7Q7J2Gw8DMbhp8zOO48d1k8zzW81OWUp5Xr..c3hNx4!/b/dGgBAAAAAAAA&bo=gAJyBAAAAAADB9Y!&rf=viewer_4  
+## 图片
+![](http://a1.qpic.cn/psb?/V14AvX772n81LZ/7Q7J2Gw8DMbhp8zOO48d1k8zzW81OWUp5Xr..c3hNx4!/b/dGgBAAAAAAAA&bo=gAJyBAAAAAADB9Y!&rf=viewer_4)  
