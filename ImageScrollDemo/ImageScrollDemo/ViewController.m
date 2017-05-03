@@ -26,7 +26,7 @@
     scrol.frame = CGRectMake(0,
                             0,
                             [UIScreen mainScreen].bounds.size.width,
-                            200);
+                            [UIScreen mainScreen].bounds.size.width/3.2);
 }
 
 

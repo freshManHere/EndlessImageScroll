@@ -18,6 +18,7 @@
 
 -(void)awakeFromNib{
     [super awakeFromNib];
+    self.imageView.backgroundColor = [UIColor greenColor];
 }
 -(void)setImg:(NSString *)img{
     _img=[img copy];
