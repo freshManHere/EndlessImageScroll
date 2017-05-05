@@ -20,7 +20,7 @@
 
 @property(strong,nonatomic)NSArray *imgArray;
 
-@property(nonatomic,strong)NSTimer *timer;
+@property(nonatomic,weak)NSTimer *timer;
 
 @end
 @implementation EndLessScrollView
