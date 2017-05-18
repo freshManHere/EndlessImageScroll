@@ -211,7 +211,6 @@
      但是，如果用户用手去拖，定时任务就会停止，他拖到第二组后，后面就没有内容了，就拖不动了。或者在第一组时，直接往前拖，也拖不动了。定时任务可以让他滚到第一组，但是手动拖时，没办法做这个操作，所以这里的解决方案是 多搞几个section。每次定时任务，滚到中间去，这样除非用户一直往前或者往后滚max组，不然不会出这个问题。
 
      */
-    //0:黄  1：蓝  2：绿
     NSIndexPath *currentIndexReset=[NSIndexPath indexPathForItem:currentIndex.item inSection:maxSection/2];
     if (self.scrollDirection == ScrollDirectionVertical)
     {

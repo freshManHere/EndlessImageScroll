@@ -1,5 +1,5 @@
 # EndlessImageScroll
-带定时功能的banner，图片滚动浏览
+带定时功能的banner，图片滚动浏览，新增垂直滚动方向，默认为水平滚动，修改scrollDirection属性，即可改变方向。
 
 
 # 用法：
