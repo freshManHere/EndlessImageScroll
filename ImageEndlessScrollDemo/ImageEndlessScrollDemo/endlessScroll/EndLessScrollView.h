@@ -10,7 +10,11 @@
  *每个图片的样子 可以修改MyCollectionViewCell这个cell，可以自定义
  */
 #import <UIKit/UIKit.h>
-
+typedef NS_ENUM(NSInteger,ScrollDirection)
+{
+    ScrollDirectionVertical,
+    ScrollDirectionHorizontal
+};
 @class EndLessScrollView;
 @protocol EndLessScrollViewDelegate<NSObject>
 
@@ -40,6 +44,11 @@
  */
 @property (nonatomic,assign) BOOL timerEnabled;
 
+
+/**
+ 滚动方向 默认为水平方向 
+ */
+@property (nonatomic,assign)ScrollDirection scrollDirection;
 
 /**
  图片的名字，url字符串（图片带http判断为网络图片）

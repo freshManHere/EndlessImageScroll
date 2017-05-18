@@ -22,6 +22,10 @@
 
 @property(nonatomic,weak)NSTimer *timer;
 
+@property (nonatomic,strong) NSIndexPath *currentIndex;
+
+@property (nonatomic,strong) UICollectionViewFlowLayout *flowLayout;
+
 @end
 @implementation EndLessScrollView
 -(instancetype)initWithFrame:(CGRect)frame
@@ -29,6 +33,7 @@
     if (self = [super initWithFrame:frame])
     {
         self.timerEnabled = YES;
+        self.currentIndex = [NSIndexPath indexPathForItem:0 inSection:0];
 
     }
     return self;
@@ -41,7 +46,7 @@
         
         [self addTopImageViewWithImgArr:imgNameArray];
         
-        [self addTimerWithTimeInterval:2.0];
+        self.timeInterval = 2.0;
     }
     return self;
 }
@@ -71,7 +76,12 @@
     [self timerClose];
     [self addTimerWithTimeInterval:timeInterval];
 }
-
+-(void)setScrollDirection:(ScrollDirection)scrollDirection
+{
+    _scrollDirection = scrollDirection;
+//    self.pageCon.hidden = scrollDirection==ScrollDirectionVertical?YES:NO;
+    self.flowLayout.scrollDirection = (int)scrollDirection;
+}
 -(void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor
 {
     _pageIndicatorTintColor = pageIndicatorTintColor;
@@ -135,8 +145,17 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
         
-        
-self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.x/self.bounds.size.width+0.5)%self.imgArray.count;
+    if (self.scrollDirection == ScrollDirectionHorizontal)
+    {
+        self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.x/self.bounds.size.width+0.5)%self.imgArray.count;
+
+    }
+    else
+    {
+        self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.y/self.bounds.size.height+0.5)%self.imgArray.count;
+
+    }
+    
 //    NSLog(@"%d",self.pageCon.currentPage);
     }
 
@@ -174,11 +193,16 @@ self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.x/self.bo
 
 -(void)timerClose
 {
-    [self.timer invalidate];
-    self.timer = nil;
+    if (self.timer)
+    {
+        [self.timer invalidate];
+        self.timer = nil;
+    }
+    
 }
 -(void)scrollToNextPage{
-    NSIndexPath *currentIndex=[[self.endlessCollecionView indexPathsForVisibleItems]lastObject];
+//    NSIndexPath *currentIndex=[[self.endlessCollecionView indexPathsForVisibleItems]lastObject];
+    NSIndexPath *currentIndex = self.currentIndex;
     //马上显示回中间那组的图片
     /*tips:
      * 这里如果只需要自动滚动 其实只需要滚到第一组就行了。
@@ -187,16 +211,40 @@ self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.x/self.bo
      但是，如果用户用手去拖，定时任务就会停止，他拖到第二组后，后面就没有内容了，就拖不动了。或者在第一组时，直接往前拖，也拖不动了。定时任务可以让他滚到第一组，但是手动拖时，没办法做这个操作，所以这里的解决方案是 多搞几个section。每次定时任务，滚到中间去，这样除非用户一直往前或者往后滚max组，不然不会出这个问题。
 
      */
+    //0:黄  1：蓝  2：绿
     NSIndexPath *currentIndexReset=[NSIndexPath indexPathForItem:currentIndex.item inSection:maxSection/2];
-    [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    if (self.scrollDirection == ScrollDirectionVertical)
+    {
+        [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+
+    }
+    else
+    {
+        [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+
+    }
+//    [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     NSInteger nextItem=currentIndexReset.item+1;
     NSInteger nextSection=currentIndexReset.section;
+//    NSLog(@"current:::section:%ld---item:%ld",nextSection,nextItem);
+
     if (nextItem==self.imgArray.count) {
         nextItem=0;
         nextSection=nextSection+1;
     }
     NSIndexPath *nextIndex=[NSIndexPath indexPathForItem:nextItem inSection:nextSection];
-    [self.endlessCollecionView scrollToItemAtIndexPath:nextIndex atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+
+    self.currentIndex = nextIndex;
+    if (self.scrollDirection == ScrollDirectionVertical)
+    {
+        [self.endlessCollecionView scrollToItemAtIndexPath:nextIndex atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+        
+    }
+    else
+    {
+        [self.endlessCollecionView scrollToItemAtIndexPath:nextIndex atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+        
+    }
     
 }
 #pragma mark - Frame
@@ -226,9 +274,12 @@ self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.x/self.bo
         flow.headerReferenceSize=CGSizeMake(0, 0);
         _endlessCollecionView =
         [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flow];
-        _endlessCollecionView.showsHorizontalScrollIndicator=NO;
+        _endlessCollecionView.showsHorizontalScrollIndicator = NO;
+        _endlessCollecionView.showsVerticalScrollIndicator = NO;
         //滚动方向（横向、纵向）
         flow.scrollDirection=UICollectionViewScrollDirectionHorizontal;
+        self.flowLayout = flow;
+        _scrollDirection = (int)flow.scrollDirection;
         _endlessCollecionView.dataSource=self;
         _endlessCollecionView.delegate=self;
         _endlessCollecionView.translatesAutoresizingMaskIntoConstraints = NO;
