@@ -223,10 +223,8 @@
         [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
 
     }
-//    [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     NSInteger nextItem=currentIndexReset.item+1;
     NSInteger nextSection=currentIndexReset.section;
-//    NSLog(@"current:::section:%ld---item:%ld",nextSection,nextItem);
 
     if (nextItem==self.imgArray.count) {
         nextItem=0;
