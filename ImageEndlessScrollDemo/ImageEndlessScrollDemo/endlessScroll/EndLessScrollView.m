@@ -205,10 +205,10 @@
     NSIndexPath *currentIndex = self.currentIndex;
     //马上显示回中间那组的图片
     /*tips:
-     * 这里如果只需要自动滚动 其实只需要滚到第一组就行了。
+     * 这里如果只需要自动滚动 其实只需要滚到第0组就行了。
      NSIndexPath *currentIndexReset=[NSIndexPath indexPathForItem:currentIndex.item inSection:0];
      并且只需要2组。
-     但是，如果用户用手去拖，定时任务就会停止，他拖到第二组后，后面就没有内容了，就拖不动了。或者在第一组时，直接往前拖，也拖不动了。定时任务可以让他滚到第一组，但是手动拖时，没办法做这个操作，所以这里的解决方案是 多搞几个section。每次定时任务，滚到中间去，这样除非用户一直往前或者往后滚max组，不然不会出这个问题。
+     但是，如果用户用手去拖，定时任务就会停止，他拖到第1组后，后面就没有内容了，就拖不动了。或者在第0组时，直接往前拖，也拖不动了。定时任务可以让他滚到第0组，但是手动拖时，没办法做这个操作，所以这里的解决方案是 多搞几个section。每次定时任务，滚到中间的section去，这样除非用户一直往前或者往后滚max/2组，不然不会出这个问题。
 
      */
     NSIndexPath *currentIndexReset=[NSIndexPath indexPathForItem:currentIndex.item inSection:maxSection/2];
