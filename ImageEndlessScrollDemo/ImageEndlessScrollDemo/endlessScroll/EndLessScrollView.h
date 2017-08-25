@@ -70,6 +70,4 @@ typedef NS_ENUM(NSInteger,ScrollDirection)
  */
 @property (nonatomic,strong) UIColor *currentPageIndicatorTintColor;
 
-
-
 @end

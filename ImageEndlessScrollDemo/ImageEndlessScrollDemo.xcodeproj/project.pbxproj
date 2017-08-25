@@ -15,7 +15,6 @@
 		A06DC2ED1EB9AD650033D7E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06DC2EB1EB9AD650033D7E1 /* LaunchScreen.storyboard */; };
 		A06DC2F81EB9AD650033D7E1 /* ImageEndlessScrollDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A06DC2F71EB9AD650033D7E1 /* ImageEndlessScrollDemoTests.m */; };
 		A06DC3031EB9AD650033D7E1 /* ImageEndlessScrollDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A06DC3021EB9AD650033D7E1 /* ImageEndlessScrollDemoUITests.m */; };
-		A06DC3161EB9AD740033D7E1 /* EndLessScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A06DC3121EB9AD740033D7E1 /* EndLessScrollView.m */; };
 		A06DC3171EB9AD740033D7E1 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A06DC3141EB9AD740033D7E1 /* MyCollectionViewCell.m */; };
 		A06DC3181EB9AD740033D7E1 /* MyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06DC3151EB9AD740033D7E1 /* MyCollectionViewCell.xib */; };
 		A06DC3421EB9AFDE0033D7E1 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A06DC31C1EB9AFDE0033D7E1 /* YYCache.m */; };
@@ -43,6 +42,7 @@
 		A06DC35E1EB9B0780033D7E1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DC35D1EB9B0780033D7E1 /* MobileCoreServices.framework */; };
 		A06DC3601EB9B0880033D7E1 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DC35F1EB9B0880033D7E1 /* libsqlite3.tbd */; };
 		A06DC3621EB9B08F0033D7E1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A06DC3611EB9B08F0033D7E1 /* libz.tbd */; };
+		A0A8252A1F4FF8F1001815FF /* EndLessScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A825291F4FF8F1001815FF /* EndLessScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,8 +79,6 @@
 		A06DC2FE1EB9AD650033D7E1 /* ImageEndlessScrollDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageEndlessScrollDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A06DC3021EB9AD650033D7E1 /* ImageEndlessScrollDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageEndlessScrollDemoUITests.m; sourceTree = "<group>"; };
 		A06DC3041EB9AD650033D7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A06DC3111EB9AD740033D7E1 /* EndLessScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLessScrollView.h; sourceTree = "<group>"; };
-		A06DC3121EB9AD740033D7E1 /* EndLessScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLessScrollView.m; sourceTree = "<group>"; };
 		A06DC3131EB9AD740033D7E1 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		A06DC3141EB9AD740033D7E1 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		A06DC3151EB9AD740033D7E1 /* MyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -128,6 +126,8 @@
 		A06DC35D1EB9B0780033D7E1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A06DC35F1EB9B0880033D7E1 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A06DC3611EB9B08F0033D7E1 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A0A825281F4FF8F1001815FF /* EndLessScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndLessScrollView.h; sourceTree = "<group>"; };
+		A0A825291F4FF8F1001815FF /* EndLessScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndLessScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,8 +230,8 @@
 		A06DC3101EB9AD740033D7E1 /* endlessScroll */ = {
 			isa = PBXGroup;
 			children = (
-				A06DC3111EB9AD740033D7E1 /* EndLessScrollView.h */,
-				A06DC3121EB9AD740033D7E1 /* EndLessScrollView.m */,
+				A0A825281F4FF8F1001815FF /* EndLessScrollView.h */,
+				A0A825291F4FF8F1001815FF /* EndLessScrollView.m */,
 				A06DC3131EB9AD740033D7E1 /* MyCollectionViewCell.h */,
 				A06DC3141EB9AD740033D7E1 /* MyCollectionViewCell.m */,
 				A06DC3151EB9AD740033D7E1 /* MyCollectionViewCell.xib */,
@@ -471,10 +471,10 @@
 				A06DC34B1EB9AFDE0033D7E1 /* UIImageView+YYWebImage.m in Sources */,
 				A06DC2E21EB9AD650033D7E1 /* AppDelegate.m in Sources */,
 				A06DC3421EB9AFDE0033D7E1 /* YYCache.m in Sources */,
-				A06DC3161EB9AD740033D7E1 /* EndLessScrollView.m in Sources */,
 				A06DC2DF1EB9AD650033D7E1 /* main.m in Sources */,
 				A06DC3451EB9AFDE0033D7E1 /* YYMemoryCache.m in Sources */,
 				A06DC34F1EB9AFDE0033D7E1 /* YYImageCoder.m in Sources */,
+				A0A8252A1F4FF8F1001815FF /* EndLessScrollView.m in Sources */,
 				A06DC3171EB9AD740033D7E1 /* MyCollectionViewCell.m in Sources */,
 				A06DC34A1EB9AFDE0033D7E1 /* UIImage+YYWebImage.m in Sources */,
 				A06DC3471EB9AFDE0033D7E1 /* CALayer+YYWebImage.m in Sources */,
@@ -720,6 +720,7 @@
 				A06DC3091EB9AD650033D7E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A06DC30A1EB9AD650033D7E1 /* Build configuration list for PBXNativeTarget "ImageEndlessScrollDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -728,6 +729,7 @@
 				A06DC30C1EB9AD650033D7E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A06DC30D1EB9AD650033D7E1 /* Build configuration list for PBXNativeTarget "ImageEndlessScrollDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -736,6 +738,7 @@
 				A06DC30F1EB9AD650033D7E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

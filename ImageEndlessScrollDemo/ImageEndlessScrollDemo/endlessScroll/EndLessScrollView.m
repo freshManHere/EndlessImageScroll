@@ -26,6 +26,11 @@
 
 @property (nonatomic,strong) UICollectionViewFlowLayout *flowLayout;
 
+/**
+ 是否显示pageControl 默认显示
+ */
+@property (nonatomic,assign) BOOL showPageControl;
+
 @end
 @implementation EndLessScrollView
 -(instancetype)initWithFrame:(CGRect)frame
@@ -34,6 +39,7 @@
     {
         self.timerEnabled = YES;
         self.currentIndex = [NSIndexPath indexPathForItem:0 inSection:0];
+        self.showPageControl = YES;
 
     }
     return self;
@@ -47,6 +53,9 @@
         [self addTopImageViewWithImgArr:imgNameArray];
         
         self.timeInterval = 2.0;
+        
+        self.showPageControl = YES;
+
     }
     return self;
 }
@@ -57,6 +66,8 @@
     [self addSubview:self.endlessCollecionView];
     [self addSubview:self.pageCon];
     self.pageCon.numberOfPages = arr.count;
+    self.showPageControl = arr.count>1?YES:NO;
+    self.endlessCollecionView.scrollEnabled = arr.count>1;
 }
 
 -(void)setTimerEnabled:(BOOL)timerEnabled
@@ -74,7 +85,11 @@
 {
     _timeInterval = timeInterval;
     [self timerClose];
-    [self addTimerWithTimeInterval:timeInterval];
+    if (self.timerEnabled)
+    {
+        [self addTimerWithTimeInterval:timeInterval];
+
+    }
 }
 -(void)setScrollDirection:(ScrollDirection)scrollDirection
 {
@@ -102,8 +117,11 @@
     self.imgArray = imageNameArray;
     
     [self addTopImageViewWithImgArr:imageNameArray];
-    
-    [self addTimerWithTimeInterval:(self.timeInterval?self.timeInterval:2)];
+    if (self.timerEnabled)
+    {
+        [self addTimerWithTimeInterval:(self.timeInterval?self.timeInterval:2)];
+
+    }
 }
 #pragma mark - collectionViewDelegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -190,7 +208,11 @@
     [[NSRunLoop mainRunLoop]addTimer:timer forMode:NSRunLoopCommonModes];
     self.timer=timer;
 }
-
+-(void)setShowPageControl:(BOOL)showPageControl
+{
+    _showPageControl = showPageControl;
+    self.pageCon.hidden = !showPageControl;
+}
 -(void)timerClose
 {
     if (self.timer)
