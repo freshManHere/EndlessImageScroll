@@ -236,7 +236,7 @@
     NSIndexPath *currentIndexReset=[NSIndexPath indexPathForItem:currentIndex.item inSection:maxSection/2];
     if (self.scrollDirection == ScrollDirectionVertical)
     {
-        [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+        [self.endlessCollecionView scrollToItemAtIndexPath:currentIndexReset atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
 
     }
     else

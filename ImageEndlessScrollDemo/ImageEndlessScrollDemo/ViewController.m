@@ -24,9 +24,9 @@
     [self.view addSubview:scrol];
     scrol.endLessScrollViewDelegate = self;
     scrol.currentPageIndicatorTintColor = [UIColor orangeColor];
-    scrol.scrollDirection = ScrollDirectionVertical;
+    scrol.scrollDirection = ScrollDirectionHorizontal;
     scrol.frame = CGRectMake(0,
-                             0,
+                             20,
                              [UIScreen mainScreen].bounds.size.width,
                              [UIScreen mainScreen].bounds.size.width/3.2);
 }
