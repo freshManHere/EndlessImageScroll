@@ -16,13 +16,11 @@
 
 @property(nonatomic,strong)UICollectionView *endlessCollecionView;
 
-@property(nonatomic,strong)UIPageControl *pageCon;
-
 @property(strong,nonatomic)NSArray *imgArray;
 
 @property(nonatomic,weak)NSTimer *timer;
 
-@property (nonatomic,strong) NSIndexPath *currentIndex;
+//@property (nonatomic,strong) NSIndexPath *currentIndex;
 
 @property (nonatomic,strong) UICollectionViewFlowLayout *flowLayout;
 
@@ -38,7 +36,7 @@
     if (self = [super initWithFrame:frame])
     {
         self.timerEnabled = YES;
-        self.currentIndex = [NSIndexPath indexPathForItem:0 inSection:0];
+//        self.currentIndex = [NSIndexPath indexPathForItem:0 inSection:0];
         self.showPageControl = YES;
 
     }
@@ -115,7 +113,10 @@
         return;
     }
     self.imgArray = imageNameArray;
-    
+    if (imageNameArray.count<=0)
+    {
+        return;
+    }
     [self addTopImageViewWithImgArr:imageNameArray];
     if (self.timerEnabled)
     {
@@ -124,13 +125,9 @@
     }
 }
 #pragma mark - collectionViewDelegate
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-        
-        
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
         return maxSection;
-        
-  
-   
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -161,21 +158,27 @@
     
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.endLessScrollViewDelegate && [self.endLessScrollViewDelegate respondsToSelector:@selector(scrollView:atIndex:)])
+    {
+        [self.endLessScrollViewDelegate scrollView:self atIndex:indexPath.item];
+    }
+}
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
         
     if (self.scrollDirection == ScrollDirectionHorizontal)
     {
         self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.x/self.bounds.size.width+0.5)%self.imgArray.count;
-
     }
     else
     {
         self.pageCon.currentPage=(int)(self.endlessCollecionView.contentOffset.y/self.bounds.size.height+0.5)%self.imgArray.count;
-
     }
     
 //    NSLog(@"%d",self.pageCon.currentPage);
-    }
+}
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
@@ -186,11 +189,7 @@
     if (self.timerEnabled)
     {
         [self addTimerWithTimeInterval:(self.timeInterval?self.timeInterval:2)];
-
     }
-    
-        
-        
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.endLessScrollViewDelegate respondsToSelector:@selector(picDidClickAtIndex:)]) {
@@ -201,6 +200,10 @@
 #pragma mark - Timer
 -(void)addTimerWithTimeInterval:(NSTimeInterval)interval{
     if (self.timer)
+    {
+        return;
+    }
+    if (self.imgArray.count<=1)
     {
         return;
     }
@@ -222,9 +225,10 @@
     }
     
 }
--(void)scrollToNextPage{
-//    NSIndexPath *currentIndex=[[self.endlessCollecionView indexPathsForVisibleItems]lastObject];
-    NSIndexPath *currentIndex = self.currentIndex;
+-(void)scrollToNextPage
+{
+    NSIndexPath *currentIndex=[[self.endlessCollecionView indexPathsForVisibleItems]lastObject];
+//    NSIndexPath *currentIndex = self.currentIndex;
     //马上显示回中间那组的图片
     /*tips:
      * 这里如果只需要自动滚动 其实只需要滚到第0组就行了。
@@ -253,7 +257,7 @@
     }
     NSIndexPath *nextIndex=[NSIndexPath indexPathForItem:nextItem inSection:nextSection];
 
-    self.currentIndex = nextIndex;
+//    self.currentIndex = nextIndex;
     if (self.scrollDirection == ScrollDirectionVertical)
     {
         [self.endlessCollecionView scrollToItemAtIndexPath:nextIndex atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
@@ -264,7 +268,6 @@
         [self.endlessCollecionView scrollToItemAtIndexPath:nextIndex atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
         
     }
-    
 }
 #pragma mark - Frame
 -(void)layoutSubviews
@@ -277,9 +280,10 @@
                                                self.frame.size.height);
     //page的frame
     CGSize size = [self.pageCon sizeForNumberOfPages:self.imgArray.count ];
-    CGFloat x=self.frame.size.width-size.width-10;
-    CGFloat y=self.frame.size.height-size.height;
-    
+//    CGFloat x=self.frame.size.width-size.width-10;
+//    CGFloat y=self.frame.size.height-size.height;
+    CGFloat x=(self.frame.size.width-size.width)/2;
+    CGFloat y=self.frame.size.height-size.height+10;
     self.pageCon.frame=CGRectMake(x, y, size.width, size.height);
 }
 #pragma mark - Getter

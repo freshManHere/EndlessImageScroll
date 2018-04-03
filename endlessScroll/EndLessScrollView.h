@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger,ScrollDirection)
  */
 -(void)picDidClickAtIndex:(NSInteger)index;
 
+- (void)scrollView:(EndLessScrollView *)scrollView atIndex:(NSInteger)atIndex;
+
 @end
 @interface EndLessScrollView : UIView
 
@@ -60,9 +62,17 @@ typedef NS_ENUM(NSInteger,ScrollDirection)
  */
 @property (nonatomic,assign) NSTimeInterval timeInterval;
 
+
+/**
+ pageControl
+ */
+@property(nonatomic,strong)UIPageControl *pageCon;
+
 /**
  page圆点的底色 默认白色
  */
+
+
 @property (nonatomic,strong) UIColor *pageIndicatorTintColor;
 
 /**
